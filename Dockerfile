@@ -10,27 +10,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:7-slim
+FROM centos:7
 
-# workaround for:
-# update-alternatives: error: error creating symbolic link `/usr/share/man/man1/java.1.gz.dpkg-tmp': No such file or directory
-RUN mkdir -p /usr/share/man/man1/
-
-RUN apt-get update -q \
-  && apt-get install -y --no-install-recommends \
+RUN yum update -y \
+  && yum install -y \
     curl \
     git \
-    net-tools \
-    openjdk-7-jre-headless \
+    java-1.8.0-openjdk-headless \
     openssl \
-    procps \
-    python2.7 \
+    python \
     sudo \
     vim \
     unzip \
     wget \
+    which \
     zlibc \
-  && rm -rf /var/lib/apt/lists/*
+  && yum clean all \
+  && rm -rf /var/cache/yum
 
 ENV TINI_VERSION v0.17.0
 RUN curl -L -o /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 && chmod +x /tini
@@ -41,9 +37,9 @@ WORKDIR /opt/launcher
 ENV ENVTOCONF_URL https://github.com/adoroszlai/launcher/raw/envtoconf_ini/plugins/010_envtoconf/envtoconf
 RUN find -name onbuild.sh | xargs -n1 bash -c
 
-ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-7-openjdk-amd64
-ENV "AMBARI.PROPERTIES!CFG_server.os_family" debian
-ENV "AMBARI.PROPERTIES!CFG_server.os_type" debian7
+ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/jre
+ENV "AMBARI.PROPERTIES!CFG_server.os_family" redhat7
+ENV "AMBARI.PROPERTIES!CFG_server.os_type" centos7
 
 WORKDIR /
 ENTRYPOINT [ "/tini", "--", "/opt/launcher/launcher.sh" ]
