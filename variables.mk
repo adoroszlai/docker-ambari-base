@@ -1,1 +1,1 @@
-FLAVOR = centos6
+FLAVOR ?= centos6
