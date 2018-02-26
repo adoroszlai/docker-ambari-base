@@ -41,7 +41,7 @@ WORKDIR /opt/launcher
 ENV ENVTOCONF_URL https://github.com/adoroszlai/launcher/raw/envtoconf_ini/plugins/010_envtoconf/envtoconf
 RUN find -name onbuild.sh | xargs -n1 bash -c
 
-ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-7-openjdk-amd64
+ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-7-openjdk-amd64/jre
 ENV "AMBARI.PROPERTIES!CFG_server.os_family" debian
 ENV "AMBARI.PROPERTIES!CFG_server.os_type" debian7
 
