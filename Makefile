@@ -13,4 +13,7 @@
 include variables.mk
 
 build:
-	docker build -t adoroszlai/ambari-base:$(FLAVOR) .
+	docker build -t adoroszlai/ambari-base:${FLAVOR} - < Dockerfile
+
+deploy:
+	docker push adoroszlai/ambari-base:${FLAVOR}
