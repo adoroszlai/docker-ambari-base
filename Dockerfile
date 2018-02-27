@@ -10,18 +10,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:7-slim
-
-# workaround for:
-# update-alternatives: error: error creating symbolic link `/usr/share/man/man1/java.1.gz.dpkg-tmp': No such file or directory
-RUN mkdir -p /usr/share/man/man1/
+FROM ubuntu:16.04
 
 RUN apt-get update -q \
   && apt-get install -y --no-install-recommends \
     curl \
     git \
     net-tools \
-    openjdk-7-jre-headless \
+    openjdk-8-jre-headless \
     openssl \
     procps \
     python2.7 \
@@ -41,9 +37,9 @@ WORKDIR /opt/launcher
 ENV ENVTOCONF_URL https://github.com/adoroszlai/launcher/raw/envtoconf_ini/plugins/010_envtoconf/envtoconf
 RUN find -name onbuild.sh | xargs -n1 bash -c
 
-ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-7-openjdk-amd64/jre
-ENV "AMBARI.PROPERTIES!CFG_server.os_family" debian
-ENV "AMBARI.PROPERTIES!CFG_server.os_type" debian7
+ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV "AMBARI.PROPERTIES!CFG_server.os_family" ubuntu
+ENV "AMBARI.PROPERTIES!CFG_server.os_type" ubuntu16
 
 WORKDIR /
 ENTRYPOINT [ "/tini", "--", "/opt/launcher/launcher.sh" ]

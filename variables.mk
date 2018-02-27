@@ -1,1 +1,1 @@
-FLAVOR ?= debian7
+FLAVOR ?= ubuntu16
