@@ -39,7 +39,8 @@ WORKDIR /opt/launcher
 ENV ENVTOCONF_URL https://github.com/adoroszlai/launcher/raw/envtoconf_ini/plugins/010_envtoconf/envtoconf
 RUN find -name onbuild.sh | xargs -n1 bash -c
 
-ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/jre
+ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0
+ENV "AMBARI.PROPERTIES!CFG_java.home" ${JAVA_HOME}
 ENV "AMBARI.PROPERTIES!CFG_server.os_family" redhat7
 ENV "AMBARI.PROPERTIES!CFG_server.os_type" centos7
 
