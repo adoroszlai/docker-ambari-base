@@ -16,9 +16,11 @@ RUN yum update -y \
   && yum install -y \
     curl \
     git \
+    initscripts \
     java-1.8.0-openjdk-headless \
     openssl \
     python \
+    redhat-lsb \
     sudo \
     vim \
     unzip \
