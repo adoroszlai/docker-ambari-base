@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM centos:7
+FROM amazonlinux:2
 
 RUN yum update -y \
   && yum install -y \
@@ -21,8 +21,8 @@ RUN yum update -y \
     nc \
     openssl \
     python \
-    redhat-lsb \
     sudo \
+    system-lsb \
     vim \
     unzip \
     wget \
@@ -42,8 +42,8 @@ RUN find -name onbuild.sh | xargs -n1 bash -c
 
 ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0
 ENV "AMBARI.PROPERTIES!CFG_java.home" ${JAVA_HOME}
-ENV "AMBARI.PROPERTIES!CFG_server.os_family" redhat7
-ENV "AMBARI.PROPERTIES!CFG_server.os_type" centos7
+ENV "AMBARI.PROPERTIES!CFG_server.os_family" amazonlinux
+ENV "AMBARI.PROPERTIES!CFG_server.os_type" amazonlinux2
 
 WORKDIR /
 ENTRYPOINT [ "/tini", "--", "/opt/launcher/launcher.sh" ]

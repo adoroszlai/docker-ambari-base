@@ -1,1 +1,1 @@
-FLAVOR ?= centos7
+FLAVOR ?= amazonlinux2
