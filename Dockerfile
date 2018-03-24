@@ -18,6 +18,7 @@ RUN yum update -y \
     git \
     initscripts \
     java-1.8.0-openjdk-headless \
+    nc \
     openssl \
     python \
     redhat-lsb \
