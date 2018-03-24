@@ -32,7 +32,7 @@ ENV TINI_VERSION v0.17.0
 RUN curl -L -o /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 && chmod +x /tini
 
 WORKDIR /opt
-RUN git clone --no-checkout https://github.com/adoroszlai/launcher.git && cd /opt/launcher && git checkout a35b778
+RUN git clone https://github.com/adoroszlai/launcher.git
 WORKDIR /opt/launcher
 ENV ENVTOCONF_URL https://github.com/adoroszlai/launcher/raw/envtoconf_ini/plugins/010_envtoconf/envtoconf
 RUN find -name onbuild.sh | xargs -n1 bash -c
