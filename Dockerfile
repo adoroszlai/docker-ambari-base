@@ -17,6 +17,7 @@ RUN apt-get update -q \
     curl \
     git \
     net-tools \
+    netcat \
     openjdk-8-jre-headless \
     openssl \
     procps \
