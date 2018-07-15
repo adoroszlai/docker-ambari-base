@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:7-slim
+FROM debian:9-slim
 
 # workaround for:
 # update-alternatives: error: error creating symbolic link `/usr/share/man/man1/java.1.gz.dpkg-tmp': No such file or directory
@@ -22,7 +22,7 @@ RUN apt-get update -q \
     git \
     net-tools \
     netcat \
-    openjdk-7-jre-headless \
+    openjdk-8-jre-headless \
     openssl \
     procps \
     python2.7 \
@@ -44,7 +44,7 @@ RUN find -name onbuild.sh | xargs -n1 bash -c
 
 ENV "AMBARI.PROPERTIES!CFG_java.home" /usr/lib/jvm/java-7-openjdk-amd64/jre
 ENV "AMBARI.PROPERTIES!CFG_server.os_family" debian
-ENV "AMBARI.PROPERTIES!CFG_server.os_type" debian7
+ENV "AMBARI.PROPERTIES!CFG_server.os_type" debian9
 
 WORKDIR /
 ENTRYPOINT [ "/tini", "--", "/opt/launcher/launcher.sh" ]
